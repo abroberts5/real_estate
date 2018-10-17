@@ -31,4 +31,9 @@ class House
     area_array.sum
   end
 
+  def price_per_square_foot
+    new_price = @price.delete("$").to_i
+    output = new_price / area.to_f
+    output.round(2)
+  end
 end
