@@ -50,4 +50,17 @@ class House
     sorted.reverse
   end
 
+  def rooms_by_category
+    transformed = []
+    @rooms.sort_by do |room|
+      transformed << [room.category, room]
+    end
+    sorted = Hash.new(0)
+    transformed.each do |key, value|
+      sorted[key] = [value]
+      # require 'pry';binding.pry
+    end
+    sorted
+  end
+
 end
