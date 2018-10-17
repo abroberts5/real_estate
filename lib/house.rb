@@ -51,16 +51,10 @@ class House
   end
 
   def rooms_by_category
-    transformed = []
-    @rooms.sort_by do |room|
-      transformed << [room.category, room]
+    transformed = Hash.new {|hash, key| hash[key] = []}
+    @rooms.each do |room|
+      transformed[room.category] << room
     end
-    sorted = Hash.new(0)
-    transformed.each do |key, value|
-      sorted[key] = [value]
-      # require 'pry';binding.pry
-    end
-    sorted
+    transformed
   end
-
 end
