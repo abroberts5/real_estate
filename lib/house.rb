@@ -36,4 +36,18 @@ class House
     output = new_price / area.to_f
     output.round(2)
   end
+
+  def sorted_by_area
+    transformed = []
+    @rooms.sort_by do |room|
+      transformed << [room.area, room]
+    end
+    transformed = transformed.sort
+    sorted = []
+    transformed.each do |key, value|
+      sorted << value
+    end
+    sorted.reverse
+  end
+
 end
