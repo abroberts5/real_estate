@@ -4,7 +4,7 @@ class House
                   :rooms
 
   def initialize(price, address)
-    @price    = price
+    @price    = price.delete("$").to_i
     @address  = address
     @rooms    = []
   end
@@ -13,6 +13,8 @@ class House
     @rooms << new_room
   end
 
+  # @rooms.select do |room|
+  # room.category == category #>
   def rooms_from_category(category)
     by_category = []
     @rooms.find_all do |room|
@@ -23,17 +25,16 @@ class House
     by_category
   end
 
+  # @rooms.sum {|room| room.area} #>
   def area
-    area_array = []
-    @rooms.each do |room|
-      area_array << room.area
+    house_size = @rooms.map do |room|
+      room.area
     end
-    area_array.sum
+    house_size.sum
   end
 
   def price_per_square_foot
-    new_price = @price.delete("$").to_i
-    output = new_price / area.to_f
+    output = @price / area.to_f
     output.round(2)
   end
 

@@ -13,7 +13,7 @@ class RoomTest < MiniTest::Test
     assert_equal :bedroom, room.category
   end
 
-  def test_area_reads_passed_in_ value
+  def test_area_reads_passed_in
     room = Room.new(:bedroom, 10, 13)
     assert_equal 130, room.area
   end
